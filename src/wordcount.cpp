@@ -95,6 +95,6 @@ void IsvestiDaznusius(
     }
 
     out << std::string(40, '-') << '\n';
-    out << "Viso skirtingu zodziu (>1): "
+    out << "Viso skirtingu zodziu : "
         << sarasas.size() << '\n';
 }

@@ -1,0 +1,84 @@
+# ================= KOMPILIAVIMO REZULTATAI =================
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Programa
+programa
+programa.exe
+testai
+testai.exe
+
+# ================= BUILD KATALOGAI =================
+build/
+Build/
+out/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+install_manifest.txt
+
+# ================= DUOMENŲ FAILAI =================
+data/
+rezultatai/
+
+# ================= VSCODE =================
+.vscode/
+*.code-workspace
+
+# ================= VISUAL STUDIO =================
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+*.aps
+*.pch
+*.vspscc
+x64/
+x86/
+Debug/
+Release/
+
+# ================= CLION =================
+.idea/
+cmake-build-debug/
+cmake-build-release/
+
+# ================= OS FAILAI =================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.directory
+
+# ================= GOOGLE TEST =================
+_deps/
+googletest/
+
+# ================= DOXYGEN =================
+docs/html/
+docs/latex/
+docs/*.pdf
+Doxyfile.bak

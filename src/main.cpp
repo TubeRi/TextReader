@@ -1,10 +1,10 @@
-#include <iostream>
-#include <filesystem>
-#include <stdexcept>
-
 #include "wordcount.h"
 #include "crossref.h"
 #include "urlextract.h"
+
+#include <iostream>
+#include <filesystem>
+#include <stdexcept>
 
 using std::cout;
 using std::endl;
@@ -14,13 +14,11 @@ int main()
 {
     const std::string tekstas = "data/vilnius.txt";
 
-    std::filesystem::create_directory("data");
     std::filesystem::create_directory("rezultatai");
 
     try
     {
         // ================= 1 UZDUOTIS =================
-        // Zodziu daznis
 
         cout << "1. Skaiciuojami zodziai...\n";
 
@@ -35,7 +33,6 @@ int main()
 
 
         // ================= 2 UZDUOTIS =================
-        // Cross-reference lentele
 
         cout << "2. Kuriama cross-reference lentele...\n";
 
@@ -50,7 +47,6 @@ int main()
 
 
         // ================= 3 UZDUOTIS =================
-        // URL paieskas
 
         cout << "3. Ieskoma URL...\n";
 

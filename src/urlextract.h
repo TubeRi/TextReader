@@ -3,19 +3,58 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
-struct Url
+
+class Url
 {
-    std::string pilnas;      // pvz. https://www.vu.lt/
-    std::string sutrumpintas; // pvz. www.vu.lt
+private:
+
+    std::string pilnas_;
+    std::string sutrumpintas_;
+
+public:
+
+    // ================= KONSTRUKTORIAI =================
+
+    Url() = default;
+
+    Url(
+        const std::string& pilnas,
+        const std::string& sutrumpintas
+    );
+
+    // ================= RULE OF FIVE =================
+
+    ~Url() = default;
+
+    Url(const Url&)                = default;
+    Url& operator=(const Url&)     = default;
+    Url(Url&&) noexcept            = default;
+    Url& operator=(Url&&) noexcept = default;
+
+    // ================= GETTERIAI =================
+
+    const std::string& pilnas()        const;
+    const std::string& sutrumpintas()  const;
+
+    // ================= OPERATORIAI =================
+
+    friend std::ostream& operator<<(
+        std::ostream& os,
+        const Url& u
+    );
+
+    bool operator==(const Url& other) const;
 };
 
-// Isrenka visus URL is teksto failo
+
+// ================= FUNKCIJOS =================
+
 std::vector<Url> IstrauktiUrl(
     const std::string& failas
 );
 
-// Isveda URL i faila (pilna ir sutrumpinta forma)
 void IsvestiUrl(
     const std::string& failas,
     const std::vector<Url>& urlai

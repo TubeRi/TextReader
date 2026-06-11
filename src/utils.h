@@ -8,9 +8,7 @@
 // Pavercia raide i mazaja (palaiko ASCII)
 inline char ToLower(char c)
 {
-    return static_cast<char>(std::tolower(
-        static_cast<unsigned char>(c)
-    ));
+    return static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
 }
 
 // Pavercia visa zodi i mazasias raides
@@ -26,16 +24,12 @@ inline std::string IsvalytiZodi(const std::string& s)
     int start = 0;
     int end   = static_cast<int>(s.size()) - 1;
 
-    while (start <= end &&
-           !std::isalpha(static_cast<unsigned char>(s[start])) &&
-           !std::isdigit(static_cast<unsigned char>(s[start])))
+    while (start <= end && !std::isalpha(static_cast<unsigned char>(s[start])) && !std::isdigit(static_cast<unsigned char>(s[start])))
     {
         start++;
     }
 
-    while (end >= start &&
-           !std::isalpha(static_cast<unsigned char>(s[end])) &&
-           !std::isdigit(static_cast<unsigned char>(s[end])))
+    while (end >= start && !std::isalpha(static_cast<unsigned char>(s[end])) && !std::isdigit(static_cast<unsigned char>(s[end])))
     {
         end--;
     }

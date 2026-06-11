@@ -394,4 +394,4 @@ xv                            2
 xviii                         2         
 yes                           2         
 ----------------------------------------
-Viso skirtingu zodziu (>1): 393
+Viso skirtingu zodziu : 393

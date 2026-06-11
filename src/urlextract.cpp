@@ -7,9 +7,59 @@
 #include <algorithm>
 #include <regex>
 
-//  PAGALBINES
 
-// Pasalina galo skyrybos zenklus is URL
+// ================================================================
+//  Url — KONSTRUKTORIUS
+// ================================================================
+
+Url::Url(
+    const std::string& pilnas,
+    const std::string& sutrumpintas
+)
+    : pilnas_(pilnas),
+      sutrumpintas_(sutrumpintas)
+{
+}
+
+
+// ================================================================
+//  Url — GETTERIAI
+// ================================================================
+
+const std::string& Url::pilnas() const
+{
+    return pilnas_;
+}
+
+const std::string& Url::sutrumpintas() const
+{
+    return sutrumpintas_;
+}
+
+
+// ================================================================
+//  Url — OPERATORIAI
+// ================================================================
+
+std::ostream& operator<<(
+    std::ostream& os,
+    const Url& u
+)
+{
+    os << u.pilnas_ << " (" << u.sutrumpintas_ << ")";
+    return os;
+}
+
+bool Url::operator==(const Url& other) const
+{
+    return pilnas_ == other.pilnas_;
+}
+
+
+// ================================================================
+//  PAGALBINES FUNKCIJOS
+// ================================================================
+
 static std::string IsvalytiUrl(std::string url)
 {
     while (!url.empty())
@@ -17,32 +67,27 @@ static std::string IsvalytiUrl(std::string url)
         char c = url.back();
         if (c == '.' || c == ',' || c == ')' ||
             c == ']' || c == '"' || c == '\'')
-        {
             url.pop_back();
-        }
-        else break;
+        else
+            break;
     }
-
     return url;
 }
 
-// Gauna sutrumpinta URL forma (be https://, http://)
 static std::string Sutrumpinti(const std::string& url)
 {
     std::string s = url;
 
-    // Pasaliname protokola
-    if (s.rfind("https://", 0) == 0)      s = s.substr(8);
-    else if (s.rfind("http://", 0) == 0)  s = s.substr(7);
-
-    // Pasaliname www. jei yra (neprivaloma - paliekame)
-    // Pagal uzduoti: "www.vu.lt" arba "vu.lt"
-    // Paliekame www. jei buvo originale
+    if (s.rfind("https://", 0) == 0)     s = s.substr(8);
+    else if (s.rfind("http://", 0) == 0) s = s.substr(7);
 
     return s;
 }
 
+
+// ================================================================
 //  ISRINKIMAS
+// ================================================================
 
 std::vector<Url> IstrauktiUrl(
     const std::string& failas
@@ -57,7 +102,6 @@ std::vector<Url> IstrauktiUrl(
 
     std::vector<Url> urlai;
 
-    // Regex URL aptikimui
     std::regex urlRegex(
         R"((https?://[^\s\)\]\"\',<>]+))",
         std::regex::icase
@@ -70,34 +114,21 @@ std::vector<Url> IstrauktiUrl(
         auto begin = std::sregex_iterator(
             eilute.begin(), eilute.end(), urlRegex
         );
-
         auto end = std::sregex_iterator();
 
         for (auto it = begin; it != end; ++it)
         {
-            std::string rastas = (*it)[1].str();
-            rastas = IsvalytiUrl(rastas);
+            std::string rastas = IsvalytiUrl((*it)[1].str());
 
             if (rastas.empty()) continue;
 
-            // Tikriname ar toks URL jau yra sarase
-            bool jauYra = false;
+            // Tikriname per operator== ar toks URL jau yra
+            Url naujas(rastas, Sutrumpinti(rastas));
 
-            for (const auto& u : urlai)
+            if (std::find(urlai.begin(), urlai.end(), naujas)
+                == urlai.end())
             {
-                if (u.pilnas == rastas)
-                {
-                    jauYra = true;
-                    break;
-                }
-            }
-
-            if (!jauYra)
-            {
-                Url u;
-                u.pilnas       = rastas;
-                u.sutrumpintas = Sutrumpinti(rastas);
-                urlai.push_back(u);
+                urlai.push_back(naujas);
             }
         }
     }
@@ -105,8 +136,10 @@ std::vector<Url> IstrauktiUrl(
     return urlai;
 }
 
-//  ISVEDIMAS
 
+// ================================================================
+//  ISVEDIMAS
+// ================================================================
 
 void IsvestiUrl(
     const std::string& failas,
@@ -129,8 +162,8 @@ void IsvestiUrl(
     for (const auto& u : urlai)
     {
         out << std::left
-            << std::setw(60) << u.pilnas
-            << u.sutrumpintas
+            << std::setw(60) << u.pilnas()
+            << u.sutrumpintas()
             << '\n';
     }
 
