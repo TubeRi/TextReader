@@ -1,0 +1,12 @@
+Užduotys
+
+Žodžių dažnis suskaičiuoja kiek kartų kiekvienas žodis pasikartoja tekste, išveda žodžius pasikartojančius daugiau nei 1 kartą
+Cross-reference sukuria lentelę kurioje nurodyta kuriose teksto eilutėse kiekvienas žodis buvo paminėtas
+URL radimas išrenka visus URL iš teksto, pateikia pilną ir sutrumpintą formą
+
+
+
+Kompiliavimas ir paleidimas
+
+bashg++ -std=c++17 -o programa src/main.cpp src/wordcount.cpp src/crossref.cpp src/urlextract.cpp
+./programa
