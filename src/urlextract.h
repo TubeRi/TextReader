@@ -15,7 +15,7 @@ private:
 
 public:
 
-    // ================= KONSTRUKTORIAI =================
+    // konstruktorius
 
     Url() = default;
 
@@ -24,7 +24,7 @@ public:
         const std::string& sutrumpintas
     );
 
-    // ================= RULE OF FIVE =================
+    // RULE OF FIVE 
 
     ~Url() = default;
 
@@ -33,12 +33,12 @@ public:
     Url(Url&&) noexcept            = default;
     Url& operator=(Url&&) noexcept = default;
 
-    // ================= GETTERIAI =================
+    // geteris
 
     const std::string& pilnas()        const;
     const std::string& sutrumpintas()  const;
 
-    // ================= OPERATORIAI =================
+    // operatorius
 
     friend std::ostream& operator<<(
         std::ostream& os,
@@ -49,7 +49,7 @@ public:
 };
 
 
-// ================= FUNKCIJOS =================
+// funckija
 
 std::vector<Url> IstrauktiUrl(
     const std::string& failas

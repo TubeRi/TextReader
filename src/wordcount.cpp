@@ -11,9 +11,7 @@
 
 //  SKAICIAVIMAS
 
-std::map<std::string, int> SkaiciuotiZodzius(
-    const std::string& failas
-)
+std::map<std::string, int> SkaiciuotiZodzius(const std::string& failas) // 
 {
     std::ifstream fin(failas);
 
@@ -47,10 +45,7 @@ std::map<std::string, int> SkaiciuotiZodzius(
 //  ISVEDIMAS
 
 
-void IsvestiDaznusius(
-    const std::string& failas,
-    const std::map<std::string, int>& daznis
-)
+void IsvestiDaznusius(const std::string& failas,const std::map<std::string, int>& daznis) // map rikiuoja pagal abc, o mums reikia daznio tai perkialiam i vector ir rikiuojam su sort
 {
     std::ofstream out(failas);
 
@@ -59,7 +54,7 @@ void IsvestiDaznusius(
             "Nepavyko sukurti failo: " + failas
         );
 
-    // Surenkame tik > 1 ir rikiuojame pagal dazni
+    // Surenka tik > 1 ir rikiuoja pagal dazni
     std::vector<std::pair<std::string, int>> sarasas;
 
     for (const auto& [zodis, kiekis] : daznis)

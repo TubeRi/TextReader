@@ -18,7 +18,7 @@ int main()
 
     try
     {
-        // ================= 1 UZDUOTIS =================
+        // Skaiciuoja zodziu kieki
 
         cout << "1. Skaiciuojami zodziai...\n";
 
@@ -32,7 +32,7 @@ int main()
         cout << "   -> rezultatai/zodziu_daznis.txt\n";
 
 
-        // ================= 2 UZDUOTIS =================
+        // Sukuria referwence
 
         cout << "2. Kuriama cross-reference lentele...\n";
 
@@ -46,7 +46,7 @@ int main()
         cout << "   -> rezultatai/crossref.txt\n";
 
 
-        // ================= 3 UZDUOTIS =================
+        // Iesko URL
 
         cout << "3. Ieskoma URL...\n";
 

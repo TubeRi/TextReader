@@ -8,11 +8,9 @@
 #include <algorithm>
 
 
-//  CROSS-REFERENCE KŪRIMAS
+//  cross ref
 
-std::map<std::string, std::vector<int>> SukurtiCrossRef(
-    const std::string& failas
-)
+std::map<std::string, std::vector<int>> SukurtiCrossRef(const std::string& failas) // string zodis vector eiluciu numeriai
 {
     std::ifstream fin(failas);
 

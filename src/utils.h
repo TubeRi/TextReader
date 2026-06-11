@@ -19,17 +19,20 @@ inline std::string ZodisImazasias(std::string s)
 }
 
 // Pasalina skyrybos zenklus is zodzio pradžios ir pabaigos
-inline std::string IsvalytiZodi(const std::string& s)
+inline std::string IsvalytiZodi(const std::string& s) // inline nes .h faile
 {
     int start = 0;
     int end   = static_cast<int>(s.size()) - 1;
 
-    while (start <= end && !std::isalpha(static_cast<unsigned char>(s[start])) && !std::isdigit(static_cast<unsigned char>(s[start])))
+    while (start <= end && !std::isalpha(static_cast<unsigned char>(s[start])) && !std::isdigit(static_cast<unsigned char>(s[start]))) // unsigned del neigiamu sk
     {
         start++;
     }
 
-    while (end >= start && !std::isalpha(static_cast<unsigned char>(s[end])) && !std::isdigit(static_cast<unsigned char>(s[end])))
+    while (end >= start && !std::isalpha(static_cast<unsigned char>(s[end])) && !std::isdigit(static_cast<unsigned char>(s[end]))) // static_cast kad pakeist tipa idk kaip paaiskint
+    {
+        end--;
+    }
     {
         end--;
     }

@@ -8,9 +8,7 @@
 #include <regex>
 
 
-// ================================================================
-//  Url — KONSTRUKTORIUS
-// ================================================================
+//  Url — konstruktorius
 
 Url::Url(
     const std::string& pilnas,
@@ -22,9 +20,7 @@ Url::Url(
 }
 
 
-// ================================================================
-//  Url — GETTERIAI
-// ================================================================
+//  Url — geteris
 
 const std::string& Url::pilnas() const
 {
@@ -37,9 +33,7 @@ const std::string& Url::sutrumpintas() const
 }
 
 
-// ================================================================
-//  Url — OPERATORIAI
-// ================================================================
+//  Url — operatorius
 
 std::ostream& operator<<(
     std::ostream& os,
@@ -56,9 +50,7 @@ bool Url::operator==(const Url& other) const
 }
 
 
-// ================================================================
-//  PAGALBINES FUNKCIJOS
-// ================================================================
+//  extra funkcijos
 
 static std::string IsvalytiUrl(std::string url)
 {
@@ -85,9 +77,7 @@ static std::string Sutrumpinti(const std::string& url)
 }
 
 
-// ================================================================
-//  ISRINKIMAS
-// ================================================================
+//  input
 
 std::vector<Url> IstrauktiUrl(
     const std::string& failas
@@ -136,10 +126,7 @@ std::vector<Url> IstrauktiUrl(
     return urlai;
 }
 
-
-// ================================================================
-//  ISVEDIMAS
-// ================================================================
+//  output
 
 void IsvestiUrl(
     const std::string& failas,
