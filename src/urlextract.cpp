@@ -8,7 +8,7 @@
 #include <regex>
 
 
-//  Url — konstruktorius
+//  Url — konstruktoriai
 
 Url::Url(
     const std::string& pilnas,
@@ -20,7 +20,7 @@ Url::Url(
 }
 
 
-//  Url — geteris
+//  Url — geteriai
 
 const std::string& Url::pilnas() const
 {
@@ -33,7 +33,7 @@ const std::string& Url::sutrumpintas() const
 }
 
 
-//  Url — operatorius
+//  Url — OPERATORIAI
 
 std::ostream& operator<<(
     std::ostream& os,
@@ -49,7 +49,6 @@ bool Url::operator==(const Url& other) const
     return pilnas_ == other.pilnas_;
 }
 
-
 //  extra funkcijos
 
 static std::string IsvalytiUrl(std::string url)
@@ -58,7 +57,8 @@ static std::string IsvalytiUrl(std::string url)
     {
         char c = url.back();
         if (c == '.' || c == ',' || c == ')' ||
-            c == ']' || c == '"' || c == '\'')
+            c == ']' || c == '"' || c == '\'' ||
+            c == '\r' || c == '\n')
             url.pop_back();
         else
             break;
@@ -66,18 +66,25 @@ static std::string IsvalytiUrl(std::string url)
     return url;
 }
 
+// Gauna sutrumpinta URL forma
+// https://www.vu.lt/ → vu.lt/
+// http://site.io     → site.io
+// www.site.io        → site.io
 static std::string Sutrumpinti(const std::string& url)
 {
     std::string s = url;
 
-    if (s.rfind("https://", 0) == 0)     s = s.substr(8);
-    else if (s.rfind("http://", 0) == 0) s = s.substr(7);
+    // Pasaliname protokola
+    if (s.rfind("https://", 0) == 0)      s = s.substr(8);
+    else if (s.rfind("http://", 0) == 0)  s = s.substr(7);
+
+    // Pasaliname www.
+    if (s.rfind("www.", 0) == 0) s = s.substr(4);
 
     return s;
 }
 
-
-//  input
+//  ISRINKIMAS
 
 std::vector<Url> IstrauktiUrl(
     const std::string& failas
@@ -92,8 +99,10 @@ std::vector<Url> IstrauktiUrl(
 
     std::vector<Url> urlai;
 
+    // 1. https?://...       - pilni URL su protokolu
+    // 2. www\.[a-z0-9...]   - URL su www. be protokolo
     std::regex urlRegex(
-        R"((https?://[^\s\)\]\"\',<>]+))",
+        R"((https?://[^\s\)\]\"\',<>]+|www\.[a-zA-Z0-9][a-zA-Z0-9\-\.]*\.[a-zA-Z]{2,}))",
         std::regex::icase
     );
 
@@ -112,9 +121,9 @@ std::vector<Url> IstrauktiUrl(
 
             if (rastas.empty()) continue;
 
-            // Tikriname per operator== ar toks URL jau yra
             Url naujas(rastas, Sutrumpinti(rastas));
 
+            // Dedame tik jei dar nera (per operator==)
             if (std::find(urlai.begin(), urlai.end(), naujas)
                 == urlai.end())
             {
@@ -126,7 +135,7 @@ std::vector<Url> IstrauktiUrl(
     return urlai;
 }
 
-//  output
+//  ISVEDIMAS
 
 void IsvestiUrl(
     const std::string& failas,

@@ -33,9 +33,6 @@ inline std::string IsvalytiZodi(const std::string& s) // inline nes .h faile
     {
         end--;
     }
-    {
-        end--;
-    }
 
     if (start > end) return "";
 

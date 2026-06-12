@@ -1,6 +1,7 @@
 #include "wordcount.h"
 #include "crossref.h"
 #include "urlextract.h"
+#include "el.h"
 
 #include <iostream>
 #include <filesystem>
@@ -9,10 +10,9 @@
 using std::cout;
 using std::endl;
 
-
 int main()
 {
-    const std::string tekstas = "data/vilnius.txt";
+    const std::string tekstas = "data/roma.txt";
 
     std::filesystem::create_directory("rezultatai");
 
@@ -26,11 +26,9 @@ int main()
 
         IsvestiDaznusius(
             "rezultatai/zodziu_daznis.txt",
-            daznis
-        );
+            daznis);
 
         cout << "   -> rezultatai/zodziu_daznis.txt\n";
-
 
         // Sukuria referwence
 
@@ -40,11 +38,9 @@ int main()
 
         IsvestiCrossRef(
             "rezultatai/crossref.txt",
-            crossref
-        );
+            crossref);
 
         cout << "   -> rezultatai/crossref.txt\n";
-
 
         // Iesko URL
 
@@ -54,16 +50,43 @@ int main()
 
         IsvestiUrl(
             "rezultatai/urlai.txt",
-            urlai
-        );
+            urlai);
 
         cout << "   -> rezultatai/urlai.txt\n";
         cout << "   Rasta URL: " << urlai.size() << "\n";
 
+        
 
-        cout << "\nViskas atlikta sekmingai!\n";
+
+        //Nauja funkcija
+
+        cout << "4. Ieskoma junginiu 'el + zodis'...\n";
+
+      cout << "4. Ieskoma junginiu 'el + zodis'...\n";
+
+auto junginiai = RastiElJunginius(tekstas);
+
+cout << "   Rasta junginiu: "
+     << junginiai.size()
+     << "\n";
+
+if (junginiai.empty())
+{
+    cout << "   Perspejimas: nerasta nei vieno junginio.\n";
+}
+else
+{
+    IsvestiElJunginius(
+        "rezultatai/el_junginiai.txt",
+        junginiai);
+
+    cout << "   -> rezultatai/el_junginiai.txt\n";
+}
+
+
+
     }
-    catch (const std::exception& e)
+    catch (const std::exception &e)
     {
         cout << "Klaida: " << e.what() << endl;
         return 1;

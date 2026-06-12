@@ -10,3 +10,4 @@ Kompiliavimas ir paleidimas
 
 bashg++ -std=c++17 -o programa src/main.cpp src/wordcount.cpp src/crossref.cpp src/urlextract.cpp
 ./programa
+

@@ -1,0 +1,18 @@
+Pilnas URL                                                  Sutrumpintas
+------------------------------------------------------------------------------------------
+https://www.istat.it/it/archivio/156224                     istat.it/it/archivio/156224
+http://www.lboro.ac.uk/gawc/world2010t.html                 lboro.ac.uk/gawc/world2010t.html
+www.site.io                                                 site.io
+www.site.bg                                                 site.bg
+www.site.it                                                 site.it
+www.site.academy                                            site.academy
+http://site.io                                              site.io
+http://site.bg                                              site.bg
+http://site.it                                              site.it
+http://site.academy                                         site.academy
+https://site.io                                             site.io
+https://site.bg                                             site.bg
+https://site.it                                             site.it
+https://site.academy                                        site.academy
+------------------------------------------------------------------------------------------
+Viso URL: 14
